@@ -37,7 +37,7 @@ NeuroBloom is an **AI-driven accessibility platform** designed to assist neurodi
 - **Fall Detection System** – Uses AI & motion sensors to detect falls.  
 
 ## 🛠 Tech Stack  
-**Frontend:** React + Tailwind CSS  
+**Frontend:** React + Tailwind CSS + Javascript
 **Backend:** FastAPI (Python)  
 **AI & ML:** OpenAI GPT, Google TTS/STT, TensorFlow  
 **APIs & Tools:**  
