@@ -10,58 +10,75 @@
     
     <!-- Tailwind CSS for styling the page -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <!-- Main content container with padding, rounded corners, and shadow -->
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-        <!-- Main header of the page with title -->
-        <h1 class="text-2xl font-bold text-center mb-4">🧠 NeuroBloom AI</h1>
+<body class="bg-gray-100 flex flex-col min-h-screen">
 
-<<<<<<< HEAD:AI Frontend/index.html
-        <!-- Label and input field for entering the text to be processed -->
-        <label for="inputText" class="block font-semibold mb-2">Enter Text:</label>
-        <textarea id="inputText" class="w-full p-2 border rounded mb-4" rows="4"></textarea>
+    <!-- Navigation Bar (Fixed at the Top) -->
+    <nav id="navbar" class="bg-white shadow-md p-4 fixed top-0 left-0 w-full flex justify-between items-center z-50">
+        <h1 class="text-xl font-bold">
+            <a href="/frontend/main.html" class="text-blue-600 hover:text-blue-800">NeuroBloom</a>
+        </h1>
+        
+        <!-- Navigation Links -->
+        <div class="flex items-center space-x-6">
+            <a href="/public/chat.html" class="text-gray-700 hover:text-blue-600 flex items-center">
+                <i class="ri-chat-3-line mr-1"></i> <b>Connect</b>
+            </a>
+            <a href="index.html" class="text-gray-700 hover:text-blue-600 flex items-center">
+                <i class="ri-ai-generate-line mr-1"></i> <b>AI</b>
+            </a>
+            <a href="/frontend/logout.html" class="text-gray-700 hover:text-red-600 flex items-center">
+                <i class="ri-logout-box-r-line mr-1"></i> <b>Logout</b>
+            </a>
+            <button id="change_theme" class="text-gray-700 hover:text-yellow-500 flex items-center">
+                <i class="ri-sun-fill"></i>
+            </button>
+        </div>
+    </nav>
 
-        <!-- Buttons for each functionality (Summarize, Translate, Speak) -->
-        <div class="flex justify-between">
-            <!-- Button to trigger text summarization -->
-            <button onclick="summarizeText()" class="bg-blue-500 text-white px-4 py-2 rounded">Summarize</button>
+    <!-- Main Content Wrapper -->
+    <div class="flex-grow flex items-center justify-center mt-20">
+        <!-- Main content container -->
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
             
-            <!-- Button to trigger text translation -->
-            <button onclick="translateText()" class="bg-green-500 text-white px-4 py-2 rounded">Translate</button>
-            
-            <!-- Button to trigger text-to-speech functionality -->
-            <button onclick="textToSpeech()" class="bg-purple-500 text-white px-4 py-2 rounded">Speak</button>
+            <!-- Main header of the page with title -->
+            <h1 class="text-2xl font-bold text-center mb-4">🧠 NeuroBloom AI</h1>
+
+            <!-- Text Input Section -->
+            <label for="inputText" class="block font-semibold mb-2">Enter Text or Question:</label>
+            <textarea id="inputText" class="w-full p-2 border rounded mb-4" rows="4"></textarea>
+
+            <!-- Buttons for different functionalities -->
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="summarizeText()" class="bg-blue-500 text-white px-4 py-2 rounded">Summarize</button>
+                <button onclick="translateText()" class="bg-green-500 text-white px-4 py-2 rounded">Translate</button>
+                <button onclick="textToSpeech()" class="bg-purple-500 text-white px-4 py-2 rounded col-span-2">Speak</button>
+            </div>
+
+            <!-- AI Chatbot Section -->
+            <h2 class="mt-6 font-semibold">AI Chat:</h2>
+            <div class="flex justify-between">
+                <button onclick="chatWithAI()" class="bg-blue-500 text-white px-4 py-2 rounded">Chat</button>
+                <button onclick="resetChat()" class="bg-red-500 text-white px-4 py-2 rounded">Reset Chat</button>
+            </div>
+
+            <!-- File Upload for Images -->
+            <h2 class="mt-6 font-semibold">Upload Image:</h2>
+            <input type="file" id="imageInput" class="w-full p-2 border rounded mb-4" accept="image/*">
+
+            <div class="flex justify-between">
+                <button onclick="askVisualQuestion()" class="bg-green-500 text-white px-4 py-2 rounded">Ask AI</button>
+                <button onclick="imageRecognition()" class="bg-purple-500 text-white px-4 py-2 rounded">Recognize Image</button>
+            </div>
+
+            <!-- Result Display Section -->
+            <h2 class="mt-6 font-semibold">Result:</h2>
+            <p id="result" class="p-2 bg-gray-200 rounded"></p>
         </div>
-
-        <!-- Section to display the result of the chosen operation (Summary, Translation, or Speech result) -->
-=======
-        <!-- Text Input -->
-        <label for="inputText" class="block font-semibold mb-2">Enter Your Question:</label>
-        <textarea id="inputText" class="w-full p-2 border rounded mb-4" rows="4"></textarea>
-
-        <!-- Buttons -->
-        <div class="flex justify-between">
-            <button onclick="chatWithAI()" class="bg-blue-500 text-white px-4 py-2 rounded">Chat</button>
-            <button onclick="resetChat()" class="bg-red-500 text-white px-4 py-2 rounded">Reset Chat</button>
-        </div>
-
-        <!-- File Upload for Images -->
-        <label class="block font-semibold mt-4">Upload Image:</label>
-        <input type="file" id="imageInput" class="w-full p-2 border rounded mb-4" accept="image/*">
-
-        <div class="flex justify-between">
-            <button onclick="askVisualQuestion()" class="bg-green-500 text-white px-4 py-2 rounded">Ask AI</button>
-            <button onclick="imageRecognition()" class="bg-purple-500 text-white px-4 py-2 rounded">Recognize Image</button>
-        </div>
-
-        <!-- Result Display -->
->>>>>>> aed28b0 (commit):AI_Frontend/index.html
-        <h2 class="mt-6 font-semibold">Result:</h2>
-        <p id="result" class="p-2 bg-gray-200 rounded"></p>
     </div>
 
-    <!-- External JavaScript file that contains the logic for handling the buttons -->
+    <!-- External JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>
