@@ -42,74 +42,98 @@
     </div>
 </nav>
 
+<!-- Chat Section -->
+<div class="max-w-2xl mx-auto p-6">
+    <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">NeuroBloom Chat</h2>
 
-    <!-- Chat Section -->
-    <div class="max-w-2xl mx-auto p-6">
-        <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">NeuroBloom Chat</h2>
-
-        <div class="text-center mb-6">
-            <input type="text" id="username" placeholder="Enter your username" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-3/4 md:w-1/2">
-            <button id="register-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg ml-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Register</button>
-        </div>
-
-        <!-- Chat Section (Hidden initially) -->
-        <div id="chat-section" style="display:none;" class="bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Chat with: <span id="chat-with" class="text-blue-600"></span></h3>
-
-            <div id="messages" class="space-y-4 mb-6 max-h-96 overflow-y-auto p-4 bg-gray-50 rounded-lg shadow-inner">
-                <!-- Messages will be appended here -->
-            </div>
-
-            <div id="input-section" class="flex items-center space-x-4">
-                <input type="text" id="message-input" placeholder="Type a message..." class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow">
-                <button id="send-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Send</button>
-            </div>
-        </div>
+    <div class="text-center mb-6">
+        <input type="text" id="username" placeholder="Enter your username" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-3/4 md:w-1/2">
+        <button id="register-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg ml-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Register</button>
     </div>
 
-    <script>
-        const socket = io('http://localhost:3000');
-        let username = null;
+    <!-- Chat Section (Hidden initially) -->
+    <div id="chat-section" style="display:none;" class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">You are chatting as: <span id="chat-username" class="text-blue-600"></span></h3>
 
-        const registerButton = document.getElementById('register-btn');
-        const usernameInput = document.getElementById('username');
-        const chatSection = document.getElementById('chat-section');
-        const chatWith = document.getElementById('chat-with');
-        const messagesDiv = document.getElementById('messages');
-        const sendButton = document.getElementById('send-btn');
-        const messageInput = document.getElementById('message-input');
+        <div id="messages" class="space-y-4 mb-6 max-h-96 overflow-y-auto p-4 bg-gray-50 rounded-lg shadow-inner">
+            <!-- Messages will be appended here -->
+        </div>
 
-        // Handle registration
-        registerButton.addEventListener('click', () => {
-            username = usernameInput.value.trim();
-            if (username) {
-                socket.emit('register', username);
-                document.getElementById('register-btn').style.display = 'none';
-                usernameInput.disabled = true;
-                chatSection.style.display = 'block';
-                chatWith.textContent = username;
-            }
-        });
+        <div class="text-center mb-4">
+            <input type="text" id="recipient" placeholder="Enter recipient's username" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-3/4">
+        </div>
 
-        // Handle sending messages
-        sendButton.addEventListener('click', () => {
-            const message = messageInput.value.trim();
-            if (message) {
-                const to = prompt("Enter the username of the person you want to chat with:");
-                socket.emit('private_message', { to, message });
-                messageInput.value = '';
-            }
-        });
+        <div id="input-section" class="flex items-center space-x-4">
+            <input type="text" id="message-input" placeholder="Type a message..." class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow">
+            <button id="send-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Send</button>
+        </div>
+    </div>
+</div>
 
-        // Handle incoming messages
-        socket.on('message', (data) => {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', 'bg-gray-200', 'p-2', 'rounded-lg', 'shadow-sm', 'max-w-xs', 'mx-auto');
-            messageElement.textContent = `${data.from}: ${data.message}`;
-            messagesDiv.appendChild(messageElement);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;  // Scroll to the latest message
-        });
-    </script>
-    <script src="/login_script.js"></script>
+<script>
+
+const socket = io('http://localhost:3000');
+
+let username = null;
+
+const registerButton = document.getElementById('register-btn');
+const usernameInput = document.getElementById('username');
+const chatSection = document.getElementById('chat-section');
+const chatUsername = document.getElementById('chat-username');
+const messagesDiv = document.getElementById('messages');
+const sendButton = document.getElementById('send-btn');
+const messageInput = document.getElementById('message-input');
+const recipientInput = document.getElementById('recipient');
+
+// Handle user registration
+registerButton.addEventListener('click', () => {
+    username = usernameInput.value.trim();
+    if (username) {
+        socket.emit('register', username);
+        registerButton.style.display = 'none';
+        usernameInput.disabled = true;
+        chatSection.style.display = 'block';
+        chatUsername.textContent = username;
+    }
+});
+
+// Handle sending messages
+sendButton.addEventListener('click', () => {
+    const message = messageInput.value.trim();
+    const to = recipientInput.value.trim();
+
+    if (message && to) {
+        socket.emit('private_message', { to, message });
+
+        // Display sender's message immediately
+        displayMessage("You", message, true);
+        messageInput.value = '';
+    }
+});
+
+// Handle receiving messages
+socket.on('message', (data) => {
+    displayMessage(data.from, data.message, false);
+});
+
+// Function to display messages in the chat
+function displayMessage(sender, message, isSender) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', 'p-2', 'rounded-lg', 'shadow-sm', 'max-w-xs', 'mb-2');
+
+    if (isSender) {
+        messageElement.classList.add('bg-blue-200', 'ml-auto', 'text-right');
+    } else {
+        messageElement.classList.add('bg-gray-200', 'mr-auto');
+    }
+
+    messageElement.textContent = `${sender}: ${message}`;
+    messagesDiv.appendChild(messageElement);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+
+</script>
+<script src="/login_script.js"></script>
 </body>
 </html>

@@ -49,8 +49,8 @@ NeuroBloom is an **AI-driven accessibility platform** designed to assist neurodi
 
 ### 🔹 **1. Clone the Repository**  
 ```bash
-git clone https://github.com/your-username/NeuroBloom.git
-cd NeuroBloom
+git clone https://github.com/your-username/NeuroBloom-AI.git
+cd NeuroBloom-AI
 ```
 ### 🔹 **2. Install Dependencies**  
 ### Backend (FastApi)

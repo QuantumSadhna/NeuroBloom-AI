@@ -6,37 +6,40 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Object to keep track of connected users and their socket IDs
-let users = {};
+let users = {}; // Stores usernames and their corresponding socket IDs
 
-// Serve static files from the 'public' directory (if applicable)
 app.use(express.static('public'));
 
-// Event listener for new socket connections
 io.on('connection', (socket) => {
-    console.log(`A user connected: ${socket.id}`);
-    
-    // Register a user with a username and store their socket ID
+    console.log(`User connected: ${socket.id}`);
+
+    // Register user with their socket ID
     socket.on('register', (username) => {
         users[username] = socket.id;
-        console.log(`${username} registered with ID: ${socket.id}`);
+        socket.username = username;
+        console.log(`User registered: ${username} with socket ID: ${socket.id}`);
     });
 
-    // Handle private messaging between users
+    // Handle private messaging
     socket.on('private_message', ({ to, message }) => {
         if (users[to]) {
-            io.to(users[to]).emit('message', { from: socket.id, message });
-            console.log(`Private message from ${socket.id} to ${to}: ${message}`);
+            // Send message to recipient
+            io.to(users[to]).emit('message', { from: socket.username, message });
+
+            // Also send back to sender so they see their own message
+            socket.emit('message', { from: "You", message });
+
+            console.log(`Message sent from ${socket.username} to ${to}: ${message}`);
         } else {
-            console.log(`Failed to send message. User ${to} not found.`);
+            // Notify sender that recipient is not found
+            socket.emit('message', { from: "System", message: `User ${to} not found.` });
+            console.log(`Message failed: User ${to} not found.`);
         }
     });
 
-    // Handle user disconnection
+    // Handle disconnection
     socket.on('disconnect', () => {
         console.log(`User disconnected: ${socket.id}`);
-        
-        // Remove the disconnected user from the users list
         for (const username in users) {
             if (users[username] === socket.id) {
                 delete users[username];
@@ -47,7 +50,7 @@ io.on('connection', (socket) => {
     });
 });
 
-// Start the server and listen on port 3000
+// Start the server on port 3000
 server.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000');
+    console.log('Server running on http://localhost:3000');
 });
