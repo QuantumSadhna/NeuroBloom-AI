@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Character encoding and viewport settings for responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the page displayed in the browser tab -->
     <title>NeuroBloom AI</title>
+    
+    <!-- Tailwind CSS for styling the page -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <!-- Main content container with padding, rounded corners, and shadow -->
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+        <!-- Main header of the page with title -->
         <h1 class="text-2xl font-bold text-center mb-4">🧠 NeuroBloom AI</h1>
 
+        <!-- Label and input field for entering the text to be processed -->
         <label for="inputText" class="block font-semibold mb-2">Enter Text:</label>
         <textarea id="inputText" class="w-full p-2 border rounded mb-4" rows="4"></textarea>
 
+        <!-- Buttons for each functionality (Summarize, Translate, Speak) -->
         <div class="flex justify-between">
+            <!-- Button to trigger text summarization -->
             <button onclick="summarizeText()" class="bg-blue-500 text-white px-4 py-2 rounded">Summarize</button>
+            
+            <!-- Button to trigger text translation -->
             <button onclick="translateText()" class="bg-green-500 text-white px-4 py-2 rounded">Translate</button>
+            
+            <!-- Button to trigger text-to-speech functionality -->
             <button onclick="textToSpeech()" class="bg-purple-500 text-white px-4 py-2 rounded">Speak</button>
         </div>
 
+        <!-- Section to display the result of the chosen operation (Summary, Translation, or Speech result) -->
         <h2 class="mt-6 font-semibold">Result:</h2>
         <p id="result" class="p-2 bg-gray-200 rounded"></p>
     </div>
 
+    <!-- External JavaScript file that contains the logic for handling the buttons -->
     <script src="script.js"></script>
 </body>
 </html>

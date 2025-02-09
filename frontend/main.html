@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroBloom – AI THAT ADAPTS TO YOU</title>
+    
+    <!-- External Libraries & Stylesheets -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="login_style.css">
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 font-sans">
 
+    <!-- Navigation Bar -->
     <nav id="navbar" class="bg-white shadow-md p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold"><a href="public/main.html" class="text-blue-600 hover:text-blue-800">NeuroBloom</a></h1>
+        <h1 class="text-xl font-bold">
+            <a href="public/main.html" class="text-blue-600 hover:text-blue-800">NeuroBloom</a>
+        </h1>
         
-        <!-- Right-side links including Connect, Logout, and Theme Button -->
+        <!-- Navigation Links -->
         <div class="flex items-center space-x-4">
             <a href="public/chat.html" class="text-gray-700 hover:text-blue-600"><b>Connect</b></a>
             <a href="logout.html" class="text-gray-700 hover:text-red-600"><b>Logout</b></a>
@@ -29,49 +31,69 @@
         </div>
     </nav>
     
-
+    <!-- Main Content -->
     <div class="content p-8 max-w-4xl mx-auto">
         <p class="text-center text-lg mb-8 text-gray-600">
             🌟 AI-driven accessibility platform designed to assist neurodivergent individuals, people with disabilities, and the elderly.
         </p>
 
+        <!-- Feature Blocks -->
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <!-- Adaptive User Interface Block -->
-            <a href="adaptive-ui.html" class="bg-white p-6 shadow-lg rounded-lg hover:shadow-2xl transition duration-300">
-                <i class="fas fa-rocket text-blue-500 text-3xl mb-4"></i>
-                <h2 class="text-xl font-semibold mb-2 text-gray-800">🚀 Adaptive User Interface</h2>
-                <p class="text-gray-600">AI-personalized UI, dyslexia-friendly fonts, distraction-free mode, and voice navigation.</p>
+            <!-- Adaptive User Interface -->
+            <a href="adaptive-ui.html" class="feature-card text-blue-500">
+                <i class="fas fa-rocket text-3xl mb-4"></i>
+                <h2>🚀 Adaptive User Interface</h2>
+                <p>AI-personalized UI, dyslexia-friendly fonts, distraction-free mode, and voice navigation.</p>
             </a>
-
-            <!-- AI-Powered Reading & Writing Assistance Block -->
-            <a href="reading-writing.html" class="bg-white p-6 shadow-lg rounded-lg hover:shadow-2xl transition duration-300">
-                <i class="fas fa-book-reader text-green-500 text-3xl mb-4"></i>
-                <h2 class="text-xl font-semibold mb-2 text-gray-800">📖 AI-Powered Reading & Writing Assistance</h2>
-                <p class="text-gray-600">AI text-to-speech, speech-to-text, immersive reader, and AI summarization.</p>
+            
+            <!-- AI-Powered Reading & Writing Assistance -->
+            <a href="reading-writing.html" class="feature-card text-green-500">
+                <i class="fas fa-book-reader text-3xl mb-4"></i>
+                <h2>📖 AI-Powered Reading & Writing Assistance</h2>
+                <p>AI text-to-speech, speech-to-text, immersive reader, and AI summarization.</p>
             </a>
-
-            <!-- Mobility & Visual Assistance Block -->
-            <a href="mobility-visual.html" class="bg-white p-6 shadow-lg rounded-lg hover:shadow-2xl transition duration-300">
-                <i class="fas fa-wheelchair text-purple-500 text-3xl mb-4"></i>
-                <h2 class="text-xl font-semibold mb-2 text-gray-800">♿ Mobility & Visual Assistance</h2>
-                <p class="text-gray-600">Smart screen reader, gesture-based navigation, real-time captioning, and sign language recognition.</p>
+            
+            <!-- Mobility & Visual Assistance -->
+            <a href="mobility-visual.html" class="feature-card text-purple-500">
+                <i class="fas fa-wheelchair text-3xl mb-4"></i>
+                <h2>♿ Mobility & Visual Assistance</h2>
+                <p>Smart screen reader, gesture-based navigation, real-time captioning, and sign language recognition.</p>
             </a>
-
-            <!-- AI Productivity & Focus Tools Block -->
-            <a href="productivity-focus.html" class="bg-white p-6 shadow-lg rounded-lg hover:shadow-2xl transition duration-300">
-                <i class="fas fa-tasks text-yellow-500 text-3xl mb-4"></i>
-                <h2 class="text-xl font-semibold mb-2 text-gray-800">📋 AI Productivity & Focus Tools</h2>
-                <p class="text-gray-600">Task prioritization AI, distraction blocker, smart calendar, and AI-powered note scanner.</p>
+            
+            <!-- AI Productivity & Focus Tools -->
+            <a href="productivity-focus.html" class="feature-card text-yellow-500">
+                <i class="fas fa-tasks text-3xl mb-4"></i>
+                <h2>📋 AI Productivity & Focus Tools</h2>
+                <p>Task prioritization AI, distraction blocker, smart calendar, and AI-powered note scanner.</p>
             </a>
-
-            <!-- Bonus Features for Elderly Users Block -->
-            <a href="elderly-features.html" class="bg-white p-6 shadow-lg rounded-lg hover:shadow-2xl transition duration-300">
-                <i class="fas fa-user-md text-red-500 text-3xl mb-4"></i>
-                <h2 class="text-xl font-semibold mb-2 text-gray-800">👴 Bonus Features for Elderly Users</h2>
-                <p class="text-gray-600">AI voice assistant for seniors, medication reminders, and fall detection system.</p>
+            
+            <!-- Bonus Features for Elderly Users -->
+            <a href="elderly-features.html" class="feature-card text-red-500">
+                <i class="fas fa-user-md text-3xl mb-4"></i>
+                <h2>👴 Bonus Features for Elderly Users</h2>
+                <p>AI voice assistant for seniors, medication reminders, and fall detection system.</p>
             </a>
         </div>
     </div>
+    
+    <!-- JavaScript File -->
     <script src="login_script.js"></script>
+    
+    <!-- Styles for Feature Blocks -->
+    <style>
+        .feature-card {
+            display: block;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-align: center;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </body>
 </html>

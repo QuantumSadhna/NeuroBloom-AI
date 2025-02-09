@@ -1,337 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login & Registration Form</title>
-    <link rel="icon" type="image/icon" href="img/favicon.svg" />
-    <link rel="stylesheet" href="login_style.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
     <style>
-        .fade {
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
-        .fade-in {
-            opacity: 1 !important;
-        }
-        .center-screen {
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            flex-direction: column;
-            text-align: center;
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
         }
-        body {
-            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+        
+        /* Container for Forms */
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
             color: #333;
         }
-        .content {
-            animation: fadeInUp 1s ease-in-out;
+        
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
         }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        
+        label {
+            display: block;
+            font-weight: bold;
         }
-        #navbar {
-            display: none;
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #667eea;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #564bb2;
+        }
+        
+        .toggle-link {
+            display: block;
+            margin-top: 10px;
+            color: #667eea;
+            cursor: pointer;
         }
     </style>
-  </head>
-
-  <body>
-    <div id="intro" class="center-screen">
-        <h1 class="text-6xl font-bold fade" id="flower">🌸</h1>
-        <h1 class="text-5xl font-bold fade" id="neurobloom">NeuroBloom</h1>
-        <h2 class="text-3xl fade" id="tagline">AI THAT ADAPTS TO YOU</h2>
+</head>
+<body>
+    <!-- Form Container -->
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
+            </div>
+            <div class="input-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <span class="toggle-link" onclick="toggleForm()">Don't have an account? Register</span>
     </div>
-    <div class="container">
-      <!-- Navbar -->
-      <nav>
-        <h1></h1>
-        <div class="link-group">
-          <a id="change_theme"><i class="ri-sun-fill"></i></a>
-          
-        </div>
-      </nav>
-
-      <!-- Login Form -->
-      <section class="login-form">
-        <div class="card">
-          <h1>Login</h1>
-          <div class="input-group">
-            <div class="username-email-input">
-              <div class="input-box">
-                <input
-                  type="text"
-                  id="username_email"
-                  class="input"
-                  placeholder=" "
-                />
-                <label for="username_email" class="input-label"
-                  >Username or Email</label
-                >
-              </div>
-              <span>
-                <p class="mark">!</p>
-                <p class="error-text" id="username_email_error"></p>
-              </span>
+    
+    <div class="container" id="register-container" style="display: none;">
+        <h2>Register</h2>
+        <form id="register-form">
+            <div class="input-group">
+                <label for="register-name">Full Name</label>
+                <input type="text" id="register-name" required>
             </div>
-            <div class="password-input">
-              <div class="input-box">
-                <input
-                  type="password"
-                  id="password"
-                  class="input"
-                  placeholder=" "
-                />
-                <label for="password" class="input-label">Password</label>
-              </div>
-              <span>
-                <p class="mark">!</p>
-                <p class="error-text" id="password_error"></p>
-              </span>
+            <div class="input-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" required>
             </div>
-          </div>
-          <div class="check-element">
-            <input type="checkbox" name="remember-check" id="remember_check" />
-            <label for="remember_check">Remember me</label>
-          </div>
-          <a href="main.html">
-            <button type="button" id="login_submit" class="btn">LOGIN</button>
-        </a>
-        
-        
-        </div>
-        <div class="under-card">
-          <p>Don't have an account?</p>
-          <button id="to_signup">Create</button>
-        </div>
-      </section>
-
-      <!-- Register Form -->
-      <section class="signup-form">
-        <div class="card">
-          <h1>Sign Up</h1>
-          <div class="input-group">
-            <div class="username-input">
-              <div class="input-box">
-                <input
-                  type="text"
-                  id="username"
-                  class="input"
-                  placeholder=" "
-                  maxlength="25"
-                />
-                <label for="username" class="input-label">Username</label>
-              </div>
-              <span>
-                <p class="mark">!</p>
-                <p class="error-text" id="username_error"></p>
-              </span>
+            <div class="input-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" required>
             </div>
-            <div class="email-input">
-              <div class="input-box">
-                <input type="text" id="email" class="input" placeholder=" " />
-                <label for="email" class="input-label">Email</label>
-              </div>
-              <span>
-                <p class="mark">!</p>
-                <p class="error-text" id="email_error"></p>
-              </span>
-            </div>
-            <div class="password-input">
-              <div class="input-box">
-                <input
-                  type="password"
-                  id="reg_password"
-                  class="input"
-                  placeholder=" "
-                />
-                <label for="reg_password" class="input-label">Password</label>
-              </div>
-              <span>
-                <p class="mark">!</p>
-                <p class="error-text" id="reg_password_error"></p>
-              </span>
-            </div>
-            <div class="password-input">
-              <div class="input-box">
-                <input
-                  type="password"
-                  id="conreg_password"
-                  class="input"
-                  placeholder=" "
-                />
-                <label for="conreg_password" class="input-label"
-                  >Confirm Password</label
-                >
-              </div>
-              <span>
-                <p class="mark">!</p>
-                <p class="error-text" id="conreg_password_error"></p>
-              </span>
-            </div>
-          </div>
-          <div class="check-element">
-            <input type="checkbox" name="reg-check" id="reg_check" />
-            <label for="reg_check"
-              >I have read the terms and conditions.</label
-            >
-          </div>
-          <button type="submit" id="signup_submit" class="btn" disabled>
-            SIGN UP
-          </button>
-        </div>
-        <div class="under-card">
-          <p>Already have an account?</p>
-          <button id="to_login">Login</button>
-        </div>
-      </section>
-
-      <!-- Welcome -->
-      <section class="welcome-form">
-        <div class="card" id="welcome_card">
-          <h1>Welcome, <span id="name_output">name</span></h1>
-          <div class="btn-group">
-            <button id="change_password_btn" class="cancel-btn btn">
-              Change Password
-            </button>
-            <button id="delete_account_btn" class="cancel-btn btn">
-              Delete Account
-            </button>
-            <button id="logout_btn" class="btn">LOGOUT</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Change Password Form -->
-      <section class="change-password-form">
-        <div class="card" id="change_password_card">
-          <h1>Change Password</h1>
-          <div class="input-group">
-            <div class="password-input">
-              <div class="input-box">
-                <input
-                  type="password"
-                  id="current_password"
-                  class="input"
-                  placeholder=" "
-                />
-                <label for="current_password" class="input-label"
-                  >Current Password</label
-                >
-              </div>
-              <span>
-                <p class="mark">!</p>
-                <p class="error-text" id="current_password_error"></p>
-              </span>
-            </div>
-            <div class="password-input">
-              <div class="input-box">
-                <input
-                  type="password"
-                  id="change_password"
-                  class="input"
-                  placeholder=" "
-                />
-                <label for="change_password" class="input-label"
-                  >New Password</label
-                >
-              </div>
-              <span>
-                <p class="mark">!</p>
-                <p class="error-text" id="change_password_error"></p>
-              </span>
-            </div>
-            <div class="password-input">
-              <div class="input-box">
-                <input
-                  type="password"
-                  id="conchange_password"
-                  class="input"
-                  placeholder=" "
-                />
-                <label for="conchange_password" class="input-label"
-                  >Confirm New Password</label
-                >
-              </div>
-              <span>
-                <p class="mark">!</p>
-                <p class="error-text" id="conchange_password_error"></p>
-              </span>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button type="submit" id="change_submit" class="btn">SUBMIT</button>
-            <button type="submit" id="change_cancel" class="cancel-btn btn">
-              CANCEL
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Delete Account Form -->
-      <section class="delete-account-form">
-        <div class="card" id="delete_account_card">
-          <h1>Delete Account</h1>
-          <div class="btn-group">
-            <button type="submit" id="delete_confirm" class="btn">
-              CONFIRM
-            </button>
-            <button type="submit" id="delete_cancel" class="cancel-btn btn">
-              CANCEL
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Success Form -->
-      <section class="success-form">
-        <div class="card" id="success_card">
-          <h1 id="success_text">Success text</h1>
-          <button type="submit" id="success_continue" class="btn">
-            CONTINUE
-          </button>
-        </div>
-      </section>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <span class="toggle-link" onclick="toggleForm()">Already have an account? Login</span>
     </div>
-
-    <!-- Script -->
-    <script src="login_script.js"></script>
+    
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const elements = ["flower", "neurobloom", "tagline"];
-            let delay = 0;
-            elements.forEach((id) => {
-                setTimeout(() => {
-                    document.getElementById(id).classList.add("fade-in");
-                }, delay);
-                delay += 2000;
-            });
+        /**
+         * Toggles between the login and registration forms
+         */
+        function toggleForm() {
+            const loginContainer = document.getElementById("login-container");
+            const registerContainer = document.getElementById("register-container");
             
-            setTimeout(() => {
-                document.getElementById("intro").classList.add("fade");
-                setTimeout(() => {
-                    document.getElementById("intro").style.display = "none";
-                    document.getElementById("navbar").style.display = "flex";
-                    document.querySelector(".content").classList.remove("hidden");
-                    document.querySelector(".content").classList.add("fade-in");
-                }, 1500);
-            }, delay);
-        });
+            if (loginContainer.style.display === "none") {
+                loginContainer.style.display = "block";
+                registerContainer.style.display = "none";
+            } else {
+                loginContainer.style.display = "none";
+                registerContainer.style.display = "block";
+            }
+        }
     </script>
-  </body>
+</body>
 </html>

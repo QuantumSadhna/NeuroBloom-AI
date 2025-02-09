@@ -6,36 +6,48 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-let users = {}; // To keep track of connected users
+// Object to keep track of connected users and their socket IDs
+let users = {};
 
-// Serve static files (optional for frontend)
+// Serve static files from the 'public' directory (if applicable)
 app.use(express.static('public'));
 
-// When a user connects
+// Event listener for new socket connections
 io.on('connection', (socket) => {
-    console.log('A user connected: ' + socket.id);
+    console.log(`A user connected: ${socket.id}`);
     
-    // Store the user's socket ID with their assigned username (or ID)
+    // Register a user with a username and store their socket ID
     socket.on('register', (username) => {
         users[username] = socket.id;
-        console.log(`${username} registered`);
+        console.log(`${username} registered with ID: ${socket.id}`);
     });
 
-    // Handling private messages
+    // Handle private messaging between users
     socket.on('private_message', ({ to, message }) => {
         if (users[to]) {
             io.to(users[to]).emit('message', { from: socket.id, message });
-            console.log(`Message sent to ${to}: ${message}`);
+            console.log(`Private message from ${socket.id} to ${to}: ${message}`);
+        } else {
+            console.log(`Failed to send message. User ${to} not found.`);
         }
     });
 
-    // When the user disconnects
+    // Handle user disconnection
     socket.on('disconnect', () => {
-        console.log('User disconnected: ' + socket.id);
+        console.log(`User disconnected: ${socket.id}`);
+        
+        // Remove the disconnected user from the users list
+        for (const username in users) {
+            if (users[username] === socket.id) {
+                delete users[username];
+                console.log(`${username} removed from user list.`);
+                break;
+            }
+        }
     });
 });
 
-// Start the server on a specified port
+// Start the server and listen on port 3000
 server.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
 });
