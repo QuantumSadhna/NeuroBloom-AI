@@ -1,4 +1,4 @@
-# 🌸 NeuroBloom – AI THAT ADAPTS YOU  
+# 🌸 NeuroBloom – AI THAT ADAPTS TO YOU  
 ![NeuroBloom Logo](NeuroBloom.png)
 
 
