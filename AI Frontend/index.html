@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroBloom AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+        <h1 class="text-2xl font-bold text-center mb-4">🧠 NeuroBloom AI</h1>
+
+        <label for="inputText" class="block font-semibold mb-2">Enter Text:</label>
+        <textarea id="inputText" class="w-full p-2 border rounded mb-4" rows="4"></textarea>
+
+        <div class="flex justify-between">
+            <button onclick="summarizeText()" class="bg-blue-500 text-white px-4 py-2 rounded">Summarize</button>
+            <button onclick="translateText()" class="bg-green-500 text-white px-4 py-2 rounded">Translate</button>
+            <button onclick="textToSpeech()" class="bg-purple-500 text-white px-4 py-2 rounded">Speak</button>
+        </div>
+
+        <h2 class="mt-6 font-semibold">Result:</h2>
+        <p id="result" class="p-2 bg-gray-200 rounded"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
