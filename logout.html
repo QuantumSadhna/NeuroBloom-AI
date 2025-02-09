@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging Out...</title>
+    <script>
+        // JavaScript function to handle logout and redirection
+        function logout() {
+            // Clear session data or cookies (if you're handling it client-side)
+            sessionStorage.clear(); // Clears session storage (optional, depending on your setup)
+            localStorage.clear();  // Clears local storage (optional)
+            
+            // Redirect to login page after logout
+            window.location.href = "login.html";
+        }
+
+        // Call the logout function once the page loads
+        window.onload = logout;
+    </script>
+</head>
+<body class="bg-gray-50 text-center p-8">
+    <h1 class="text-2xl font-bold text-gray-700">You are being logged out...</h1>
+    <p class="text-lg text-gray-600">Redirecting to the login page...</p>
+</body>
+</html>

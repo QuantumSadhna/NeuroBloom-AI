@@ -1,0 +1,320 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --primary-color: #ff8a65;
+  --secondary-color: #ff7043;
+  --bg: #f5f7f8;
+  --card-bg: #eceff1;
+  --input-color: #b0bec5;
+  --primary-text-color: #263238;
+  --secondary-text-color: #607d8b;
+  --button-color: #dbe2e5;
+  --button-color-hover: #c4ced4;
+  --red: #f44336;
+}
+
+.dark-mode {
+  --primary-color: #d95f39;
+  --secondary-color: #ff7043;
+  --bg: #13191c;
+  --card-bg: #263238;
+  --input-color: #455a64;
+  --primary-text-color: #eceff1;
+  --secondary-text-color: #90a4ae;
+  --button-color: #29353b;
+  --button-color-hover: #37474f;
+}
+
+::selection {
+  background-color: var(--primary-color);
+  color: var(--bg);
+}
+
+body {
+  background-color: var(--bg);
+  overflow-x: hidden;
+}
+
+/* Navbar */
+nav {
+  height: 85px;
+  padding: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav h1 {
+  font-size: 2rem;
+  color: var(--primary-text-color);
+  align-self: center;
+}
+
+nav .link-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+nav .link-group a {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 3rem;
+  color: var(--primary-text-color);
+}
+
+nav .link-group a:hover {
+  color: var(--secondary-text-color);
+  transition: color 0.3s;
+}
+
+/* Reusable Style */
+section {
+  display: flex;
+  margin: 50px 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 500px;
+  border-radius: 10px;
+  background-color: var(--card-bg);
+  padding: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: var(--primary-text-color);
+}
+
+.input-group {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.input-box {
+  position: relative;
+  width: 350px;
+}
+
+.input-box .input {
+  font-size: 16px;
+  color: var(--primary-text-color);
+  user-select: none;
+  width: 100%;
+  height: 50px;
+  padding: 15px;
+  outline: none;
+  border-radius: 10px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--input-color);
+}
+
+.input-box .input-label {
+  background: transparent;
+  position: relative;
+  z-index: 5;
+  top: -34px;
+  left: 16px;
+  font-size: 16px;
+  color: var(--input-color);
+  user-select: none;
+  cursor: text;
+  transition: 0.3s;
+}
+
+.input-box + span {
+  width: 350px;
+  display: none;
+  margin-bottom: 20px;
+}
+
+.input-box + span .mark {
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+  color: var(--card-bg);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--red);
+  user-select: none;
+}
+
+.input-box + span .error-text {
+  display: inline;
+  font-size: 16px;
+  color: var(--red);
+}
+
+.input:focus {
+  border: 1px solid var(--primary-color);
+  transition: border 0.3s;
+}
+
+.input:focus ~ .input-label,
+.input:not(:placeholder-shown) ~ .input-label {
+  background: var(--card-bg);
+  color: var(--secondary-text-color);
+  padding: 5px;
+  top: -60px;
+  left: 10px;
+  z-index: 5;
+  font-size: 12px;
+  cursor: default;
+}
+
+.input:focus ~ .input-label {
+  color: var(--primary-color);
+}
+
+.check-element {
+  width: 350px;
+  margin-bottom: 3rem;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  top: -1.5px;
+  height: 16px;
+  width: 16px;
+  background-color: var(--input-color);
+  border-radius: 2px;
+  user-select: none;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:after {
+  display: none;
+  color: white;
+  position: absolute;
+  content: "\2714";
+  top: -2px;
+  left: 3px;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--primary-color);
+}
+
+input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+.check-element {
+  margin-top: 5px;
+}
+
+.check-element label {
+  font-size: 16px;
+  color: var(--input-color);
+  cursor: pointer;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn {
+  font-size: 16px;
+  color: #f5f7f8;
+  width: 350px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  border: none;
+  user-select: none;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  background-color: var(--primary-color);
+}
+
+.cancel-btn {
+  color: var(--primary-text-color);
+  background-color: var(--button-color);
+}
+
+.cancel-btn:hover {
+  background-color: var(--button-color-hover);
+}
+
+.under-card {
+  margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.under-card p {
+  color: var(--secondary-text-color);
+}
+
+.under-card button {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  color: var(--primary-color);
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.under-card button:hover {
+  color: var(--secondary-color);
+}
+
+/* Change Password card */
+#change_password_card h1 {
+  font-size: 2.5rem;
+}
+
+/* Delete Account and Success card */
+#delete_account_card h1,
+#success_card h1,
+#welcome_card h1 {
+  margin-bottom: 100px;
+}
+
+/* Invalid Input */
+.invalid input {
+  border: 1px solid var(--red) !important;
+}
+
+.invalid label {
+  color: var(--red) !important;
+}
